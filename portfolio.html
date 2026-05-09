@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Niraj Acharya — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #080810;
+    --bg2: #0c0c16;
+    --bg3: #11111c;
+    --bg4: #161622;
+    --gold: #b8963e;
+    --gold-light: #d4b46a;
+    --gold-dim: rgba(184,150,62,0.12);
+    --gold-border: rgba(184,150,62,0.22);
+    --silver: #8892a4;
+    --silver-light: #a8b2c4;
+    --text: #ddd8cc;
+    --text-muted: #555f6e;
+    --border: rgba(255,255,255,0.06);
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(184,150,62,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(184,150,62,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none; z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 5rem;
+    z-index: 100;
+    background: rgba(8,8,16,0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.03em;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+  .nav-links a {
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--silver);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-cta {
+    padding: 0.45rem 1.1rem;
+    border: 1px solid var(--gold-border);
+    color: var(--gold-light) !important;
+  }
+  .nav-cta:hover { background: var(--gold-dim) !important; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 7rem 5rem 4rem;
+    position: relative;
+    overflow: hidden;
+    gap: 4rem;
+  }
+  .hero-left { position: relative; z-index: 1; }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--gold); flex-shrink: 0; }
+  .hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(3.2rem, 6vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.6rem;
+  }
+  .hero-name em { font-style: italic; color: var(--gold-light); }
+  .hero-title {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--silver);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+  }
+  .hero-desc {
+    color: var(--silver-light);
+    font-size: 0.93rem;
+    line-height: 1.85;
+    margin-bottom: 2.5rem;
+    max-width: 440px;
+    font-weight: 300;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.72rem 1.6rem;
+    background: var(--gold);
+    color: #08080f;
+    text-decoration: none;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: background 0.25s;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.72rem 1.6rem;
+    border: 1px solid var(--gold-border);
+    color: var(--gold-light);
+    text-decoration: none;
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: background 0.25s;
+  }
+  .btn-outline:hover { background: var(--gold-dim); }
+
+  /* Hero right — stat panels */
+  .hero-right { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 1px; }
+  .stat-panel {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 1.4rem 2rem;
+    display: flex; align-items: center; gap: 1.5rem;
+    transition: border-color 0.25s;
+  }
+  .stat-panel:hover { border-color: var(--gold-border); }
+  .stat-panel-num {
+    font-family: var(--font-display);
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+    min-width: 90px;
+  }
+  .stat-panel-label { font-size: 0.82rem; font-weight: 500; color: var(--text); margin-bottom: 0.15rem; }
+  .stat-panel-sub {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .ticker-bar {
+    background: var(--bg4);
+    border: 1px solid var(--border);
+    padding: 0.6rem 1.5rem;
+    display: flex; gap: 2rem; align-items: center;
+    margin-top: 1px; overflow: hidden;
+  }
+  .ticker-item {
+    display: flex; align-items: center; gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    color: var(--text-muted);
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .ticker-up { color: #4caf83; }
+  .ticker-down { color: #cf6679; }
+
+  /* SECTIONS */
+  section { padding: 6rem 5rem; position: relative; z-index: 1; }
+  .section-header { display: flex; align-items: baseline; gap: 1.25rem; margin-bottom: 3.5rem; }
+  .section-num { font-family: var(--font-mono); font-size: 0.62rem; color: var(--gold); letter-spacing: 0.2em; flex-shrink: 0; }
+  .section-title { font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 600; line-height: 1.1; }
+  .section-line { flex: 1; height: 1px; background: var(--border); }
+
+  /* ABOUT */
+  #about { background: var(--bg2); }
+  .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: start; }
+  .about-text p { color: var(--silver-light); margin-bottom: 1.1rem; font-size: 0.93rem; font-weight: 300; line-height: 1.9; }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+  .about-text p em { color: var(--gold-light); font-style: italic; }
+  .bring-list { margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.55rem; border-left: 1px solid var(--gold-border); padding-left: 1.25rem; }
+  .bring-item { font-size: 0.87rem; color: var(--silver-light); font-weight: 300; display: flex; align-items: flex-start; gap: 0.5rem; line-height: 1.7; }
+  .bring-item::before { content: '→'; color: var(--gold); font-family: var(--font-mono); font-size: 0.65rem; margin-top: 0.28rem; flex-shrink: 0; }
+  .about-meta { display: flex; flex-direction: column; gap: 0; }
+  .meta-item { display: flex; flex-direction: column; padding: 0.9rem 1.25rem; border: 1px solid var(--border); border-top: none; background: var(--bg3); transition: border-color 0.25s; }
+  .meta-item:first-child { border-top: 1px solid var(--border); }
+  .meta-item:hover { border-color: var(--gold-border); }
+  .meta-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.25rem; }
+  .meta-value { font-size: 0.86rem; color: var(--text); font-weight: 400; }
+
+  /* EXPERIENCE */
+  #experience { background: var(--bg); }
+  .exp-list { display: flex; flex-direction: column; gap: 1px; }
+  .exp-item { background: var(--bg3); border: 1px solid var(--border); padding: 2rem 2.5rem; display: grid; grid-template-columns: 200px 1fr; gap: 2.5rem; align-items: start; transition: border-color 0.25s; }
+  .exp-item:hover { border-color: var(--gold-border); }
+  .exp-date { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.08em; color: var(--text-muted); line-height: 1.6; }
+  .exp-org { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-top: 0.4rem; }
+  .exp-role { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; line-height: 1.2; }
+  .exp-points { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+  .exp-points li { font-size: 0.87rem; color: var(--silver-light); font-weight: 300; padding-left: 1.1rem; position: relative; line-height: 1.7; }
+  .exp-points li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-family: var(--font-mono); font-size: 0.62rem; top: 0.25rem; }
+
+  /* PROJECTS */
+  #projects { background: var(--bg2); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; }
+  .project-card { background: var(--bg3); border: 1px solid var(--border); padding: 2rem; display: flex; flex-direction: column; transition: border-color 0.25s, background 0.25s; }
+  .project-card:hover { border-color: var(--gold-border); background: var(--bg4); }
+  .project-tag { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+  .project-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; margin-bottom: 0.3rem; line-height: 1.25; }
+  .project-date { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-muted); margin-bottom: 0.85rem; }
+  .project-desc { color: var(--silver-light); font-size: 0.87rem; font-weight: 300; line-height: 1.8; margin-bottom: 1.25rem; flex: 1; }
+  .project-tools { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.25rem; }
+  .tool-badge { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.06em; padding: 0.22rem 0.55rem; background: var(--gold-dim); color: var(--gold-light); border: 1px solid rgba(184,150,62,0.18); }
+  .project-attachments { border-top: 1px solid var(--border); padding-top: 1.1rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .attach-label { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
+  .attach-slots { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .attach-slot { display: flex; align-items: center; gap: 0.35rem; padding: 0.35rem 0.7rem; border: 1px dashed rgba(255,255,255,0.08); font-family: var(--font-mono); font-size: 0.58rem; color: var(--text-muted); cursor: pointer; transition: all 0.2s; text-decoration: none; }
+  .attach-slot:hover { border-color: var(--gold-border); color: var(--gold-light); }
+  .attach-slot svg { width: 11px; height: 11px; flex-shrink: 0; }
+
+  /* SKILLS */
+  #skills { background: var(--bg); }
+  .skills-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2.5rem; }
+  .skill-group-title { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--gold-border); }
+  .skill-item { margin-bottom: 0.85rem; }
+  .skill-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; }
+  .skill-name { font-size: 0.84rem; color: var(--text); font-weight: 400; }
+  .skill-pct { font-family: var(--font-mono); font-size: 0.62rem; color: var(--gold); }
+  .skill-bar { height: 1px; background: var(--border); position: relative; overflow: hidden; }
+  .skill-fill { position: absolute; top: 0; left: 0; height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-light)); transform: scaleX(0); transform-origin: left; transition: transform 1.1s cubic-bezier(0.4,0,0.2,1); }
+  .skill-fill.animate { transform: scaleX(1); }
+
+  /* LEADERSHIP */
+  #leadership { background: var(--bg2); }
+  .leadership-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .leader-card { background: var(--bg3); border: 1px solid var(--border); padding: 2rem; transition: border-color 0.25s; display: flex; flex-direction: column; }
+  .leader-card:hover { border-color: var(--gold-border); }
+  .leader-role { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+  .leader-org { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; margin-bottom: 0.2rem; }
+  .leader-period { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-muted); margin-bottom: 1rem; }
+  .leader-points { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; flex: 1; }
+  .leader-points li { font-size: 0.85rem; color: var(--silver-light); font-weight: 300; padding-left: 1.1rem; position: relative; line-height: 1.65; }
+  .leader-points li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-family: var(--font-mono); font-size: 0.6rem; top: 0.22rem; }
+  .leader-photo-slot { margin-top: 1.4rem; border-top: 1px solid var(--border); padding-top: 1.1rem; }
+  .photo-placeholder { border: 1px dashed rgba(255,255,255,0.08); height: 130px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.45rem; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
+  .photo-placeholder:hover { border-color: var(--gold-border); color: var(--gold-light); }
+  .photo-placeholder svg { width: 18px; height: 18px; opacity: 0.45; }
+
+  /* CONTACT */
+  #contact { background: var(--bg); padding: 8rem 5rem; }
+  .contact-inner { max-width: 640px; }
+  .contact-eyebrow { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+  .contact-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
+  .contact-heading { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 600; line-height: 1.1; margin-bottom: 1rem; }
+  .contact-heading em { font-style: italic; color: var(--gold-light); }
+  .contact-sub { color: var(--silver); font-size: 0.9rem; font-weight: 300; line-height: 1.85; margin-bottom: 2rem; max-width: 460px; }
+  .contact-email { display: inline-block; font-family: var(--font-display); font-size: clamp(1rem, 2.5vw, 1.45rem); font-style: italic; color: var(--gold-light); text-decoration: none; border-bottom: 1px solid var(--gold-border); margin-bottom: 2.25rem; transition: border-color 0.25s; }
+  .contact-email:hover { border-color: var(--gold-light); }
+  .contact-links { display: flex; gap: 0.7rem; flex-wrap: wrap; }
+  .contact-link { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--silver); text-decoration: none; padding: 0.55rem 1.2rem; border: 1px solid var(--border); transition: all 0.25s; }
+  .contact-link:hover { border-color: var(--gold-border); color: var(--gold-light); }
+
+  /* FOOTER */
+  footer { padding: 1.5rem 5rem; border-top: 1px solid var(--border); background: var(--bg); display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
+  .footer-copy { font-family: var(--font-mono); font-size: 0.62rem; color: var(--text-muted); letter-spacing: 0.06em; }
+  .footer-right { font-family: var(--font-mono); font-size: 0.62rem; color: var(--text-muted); }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links li:not(:last-child) { display: none; }
+    section { padding: 4rem 1.5rem; }
+    #hero { grid-template-columns: 1fr; padding: 6.5rem 1.5rem 3rem; gap: 2.5rem; }
+    .hero-right { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    footer { flex-direction: column; gap: 0.75rem; text-align: center; padding: 1.25rem 1.5rem; }
+    #contact { padding: 5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">NA.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#leadership">Leadership</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Accounting · Finance · Business Intelligence</p>
+    <h1 class="hero-name">Niraj<br><em>Acharya</em></h1>
+    <p class="hero-title">Augustana College &mdash; Rock Island, IL</p>
+    <p class="hero-desc">
+      Bridging the precision of accounting with the analytical depth of finance.
+      Trained to read markets, build models, and make numbers tell the right story.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">View work →</a>
+      <a href="mailto:nirajacharya2002@gmail.com" class="btn-outline">Get in touch</a>
+    </div>
+  </div>
+
+  <div class="hero-right reveal">
+    <div class="stat-panel">
+      <div class="stat-panel-num">$200K+</div>
+      <div>
+        <div class="stat-panel-label">Portfolio Managed</div>
+        <div class="stat-panel-sub">Student Investment Fund · S&amp;P 500</div>
+      </div>
+    </div>
+    <div class="stat-panel">
+      <div class="stat-panel-num">25%</div>
+      <div>
+        <div class="stat-panel-label">Student Performance Improvement</div>
+        <div class="stat-panel-sub">Tutoring · Accounting &amp; Economics</div>
+      </div>
+    </div>
+    <div class="stat-panel">
+      <div class="stat-panel-num">CPA</div>
+      <div>
+        <div class="stat-panel-label">Eligible May 2027</div>
+        <div class="stat-panel-sub">Also pursuing CFA credential</div>
+      </div>
+    </div>
+    <div class="ticker-bar">
+      <div class="ticker-item">SPY <span class="ticker-up">↑ 0.42%</span></div>
+      <div class="ticker-item">BRK.B <span class="ticker-up">↑ 0.18%</span></div>
+      <div class="ticker-item">GS <span class="ticker-up">↑ 1.03%</span></div>
+      <div class="ticker-item">JPM <span class="ticker-down">↓ 0.27%</span></div>
+      <div class="ticker-item">MSCI <span class="ticker-up">↑ 0.55%</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <h2 class="section-title">About Me</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>Hi! I am <strong>Niraj Acharya</strong>, originally from <em>Pokhara, Nepal</em> — and currently a Senior majoring in <strong>Accounting and Business Intelligence</strong> at Augustana College, Rock Island, IL.</p>
+      <p>My academic journey has taken me from the foothills of the Himalayas to the financial statements of S&amp;P 500 companies. I think across borders, work across disciplines, and lead with both curiosity and rigor.</p>
+      <p>I bring with me:</p>
+      <ul class="bring-list">
+        <li>A sharp foundation in financial modeling, valuation, and GAAP accounting — built through coursework, real portfolio analysis, and hands-on investment decisions</li>
+        <li>The ability to translate complex financial data into clear, actionable insight using tools like Tableau, Excel, and Bloomberg Terminal</li>
+        <li>A global perspective and collaborative mindset, sharpened by tutoring peers and leading within a diverse campus community</li>
+        <li>Active pursuit of CPA and CFA credentials — a commitment to long-term excellence in the world of finance</li>
+        <li>An entrepreneurial foundation, certified through the ESB (Entrepreneurship and Small Business) credential issued by Certiport</li>
+      </ul>
+    </div>
+    <div class="about-meta reveal">
+      <div class="meta-item">
+        <span class="meta-label">University</span>
+        <span class="meta-value">Augustana College, Rock Island, IL</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Major</span>
+        <span class="meta-value">Accounting &amp; Business Intelligence</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">CPA Eligible</span>
+        <span class="meta-value">May 2027</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">From</span>
+        <span class="meta-value">Pokhara, Nepal</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Major GPA</span>
+        <span class="meta-value">— (add yours here)</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Certification</span>
+        <span class="meta-value">ESB v2.1 · Certiport / Pearson VUE (Dec 2025)</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Core Tools</span>
+        <span class="meta-value">Excel · Tableau · QuickBooks · Bloomberg · Office Suite</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header reveal">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Experience</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="exp-list">
+    <div class="exp-item reveal">
+      <div>
+        <div class="exp-date">Sep 2024 — Present</div>
+        <div class="exp-org">Reading &amp; Writing Center<br>Augustana College</div>
+      </div>
+      <div>
+        <div class="exp-role">Accounting &amp; Economics Tutor</div>
+        <ul class="exp-points">
+          <li>Work closely with students one-on-one and in groups to explain financial and economic concepts, strengthening communication and interpersonal skills.</li>
+          <li>Contributed to a 25% improvement in student performance based on feedback surveys.</li>
+          <li>Maintain confidentiality and professionalism while handling sensitive student information.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item reveal">
+      <div>
+        <div class="exp-date">Dec 2023 — May 2024</div>
+        <div class="exp-org">Student Investment Fund<br>Augustana College</div>
+      </div>
+      <div>
+        <div class="exp-role">Analyst</div>
+        <ul class="exp-points">
+          <li>Conducted financial statement analysis and valuation of S&amp;P 500 companies, contributing to investment decisions in a $200,000+ portfolio.</li>
+          <li>Led a team at investment competitions, applying financial modeling and valuation techniques to evaluate market strategies and opportunities.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header reveal">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Projects</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <p class="project-tag">Data Analysis &amp; Visualization</p>
+      <h3 class="project-title">Restaurant &amp; Customer Analytics Dashboard</h3>
+      <p class="project-date">January 2024</p>
+      <p class="project-desc">Designed interactive dashboards in Tableau analyzing customer spending patterns, marketing impact, menu pricing, and revenue breakdown by cuisine type. Applied trendline and correlation analysis to surface key business performance insights using MS Excel.</p>
+      <div class="project-tools">
+        <span class="tool-badge">Tableau</span>
+        <span class="tool-badge">MS Excel</span>
+        <span class="tool-badge">Trendline Analysis</span>
+        <span class="tool-badge">Correlation Analysis</span>
+      </div>
+      <div class="project-attachments">
+        <p class="attach-label">Links · Photos · Files</p>
+        <div class="attach-slots">
+          <a href="#" class="attach-slot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+            Add link
+          </a>
+          <a href="#" class="attach-slot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Add photo
+          </a>
+          <a href="#" class="attach-slot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            Add file
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <p class="project-tag">Tax &amp; Policy Analysis</p>
+      <h3 class="project-title">Moore v. United States — Tax Policy Analysis</h3>
+      <p class="project-date">December 2024</p>
+      <p class="project-desc">Analyzed the constitutional debate surrounding the Mandatory Repatriation Tax (MRT) and the taxation of unrealized gains under the 16th Amendment. Evaluated economic and policy implications of taxing undistributed foreign earnings on shareholders and government revenue.</p>
+      <div class="project-tools">
+        <span class="tool-badge">Tax Law</span>
+        <span class="tool-badge">Policy Analysis</span>
+        <span class="tool-badge">Constitutional Research</span>
+        <span class="tool-badge">Economic Analysis</span>
+      </div>
+      <div class="project-attachments">
+        <p class="attach-label">Links · Photos · Files</p>
+        <div class="attach-slots">
+          <a href="#" class="attach-slot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+            Add link
+          </a>
+          <a href="#" class="attach-slot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Add photo
+          </a>
+          <a href="#" class="attach-slot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            Add file
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Placeholder for next project -->
+    <div class="project-card reveal" style="border-style: dashed; opacity: 0.5;">
+      <p class="project-tag">Your next project</p>
+      <h3 class="project-title" style="color: var(--text-muted);">Coming soon</h3>
+      <p class="project-date">Add date</p>
+      <p class="project-desc" style="color: var(--text-muted);">Drop in your next project here — description, tools used, and any supporting files or links.</p>
+      <div class="project-tools">
+        <span class="tool-badge" style="opacity:0.5;">Tool</span>
+        <span class="tool-badge" style="opacity:0.5;">Tool</span>
+      </div>
+      <div class="project-attachments">
+        <p class="attach-label">Links · Photos · Files</p>
+        <div class="attach-slots">
+          <a href="#" class="attach-slot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+            Add link
+          </a>
+          <a href="#" class="attach-slot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            Add file
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header reveal">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Skills</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-wrapper">
+    <div class="reveal">
+      <p class="skill-group-title">Finance &amp; Accounting</p>
+      <div class="skill-item">
+        <div class="skill-header"><span class="skill-name">Financial Modeling &amp; Valuation</span><span class="skill-pct">90%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header"><span class="skill-name">GAAP &amp; Accounting Principles</span><span class="skill-pct">88%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header"><span class="skill-name">Financial Statement Analysis</span><span class="skill-pct">85%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header"><span class="skill-name">Tax Policy &amp; Compliance</span><span class="skill-pct">75%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="skill-group-title">Data &amp; Technology</p>
+      <div class="skill-item">
+        <div class="skill-header"><span class="skill-name">Microsoft Excel (Advanced)</span><span class="skill-pct">95%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header"><span class="skill-name">Tableau</span><span class="skill-pct">85%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header"><span class="skill-name">Bloomberg Terminal</span><span class="skill-pct">78%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header"><span class="skill-name">QuickBooks</span><span class="skill-pct">80%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="skill-group-title">Communication &amp; Leadership</p>
+      <div class="skill-item">
+        <div class="skill-header"><span class="skill-name">Financial Reporting &amp; Presentation</span><span class="skill-pct">88%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header"><span class="skill-name">Budgeting &amp; Financial Planning</span><span class="skill-pct">85%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header"><span class="skill-name">Cross-cultural Collaboration</span><span class="skill-pct">92%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header"><span class="skill-name">Strategic Communication</span><span class="skill-pct">87%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:87%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section id="leadership">
+  <div class="section-header reveal">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Leadership &amp; Involvement</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="leadership-grid">
+
+    <div class="leader-card reveal">
+      <p class="leader-role">Treasurer</p>
+      <h3 class="leader-org">Nepali Student Association</h3>
+      <p class="leader-period">Sep 2024 — Present · Augustana College</p>
+      <ul class="leader-points">
+        <li>Manage budgeting and financial planning, ensuring responsible allocation of funds for events using MS Excel.</li>
+        <li>Collaborate with team members to organize events and improve engagement within the Nepali campus community.</li>
+      </ul>
+      <div class="leader-photo-slot">
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Add a photo
+        </div>
+      </div>
+    </div>
+
+    <div class="leader-card reveal">
+      <p class="leader-role">Associate</p>
+      <h3 class="leader-org">Advertising Developers Club</h3>
+      <p class="leader-period">Sep 2023 — Present · Augustana College</p>
+      <ul class="leader-points">
+        <li>Collaborate with diverse team members across multiple campaign projects, demonstrating professionalism and adaptability.</li>
+        <li>Deliver weekly presentations and written strategy briefs incorporating peer and faculty feedback.</li>
+      </ul>
+      <div class="leader-photo-slot">
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Add a photo
+        </div>
+      </div>
+    </div>
+
+    <div class="leader-card reveal" style="border-style: dashed; opacity: 0.5;">
+      <p class="leader-role">Role</p>
+      <h3 class="leader-org" style="color:var(--text-muted);">Future involvement</h3>
+      <p class="leader-period">Dates · Organization</p>
+      <ul class="leader-points">
+        <li style="color:var(--text-muted);">Space reserved for a new club, org, or leadership role to add later.</li>
+      </ul>
+      <div class="leader-photo-slot">
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Add a photo
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <p class="contact-eyebrow reveal">06 — Get in touch</p>
+    <h2 class="contact-heading reveal">Let's <em>connect.</em></h2>
+    <p class="contact-sub reveal">Open to internships, analyst roles, and collaborative opportunities in accounting, finance, and business intelligence. Don't hesitate to reach out.</p>
+    <a href="mailto:nirajacharya2002@gmail.com" class="contact-email reveal">nirajacharya2002@gmail.com</a>
+    <div class="contact-links reveal">
+      <a href="https://www.linkedin.com/in/niraj-acharya01/" class="contact-link" target="_blank">LinkedIn</a>
+      <a href="tel:3094308753" class="contact-link">309-430-8753</a>
+      <a href="#" class="contact-link">Resume PDF</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2026 Niraj Acharya. All rights reserved.</span>
+  <span class="footer-right">Augustana College · Rock Island, IL</span>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+          entry.target.querySelectorAll('.skill-fill').forEach(bar => bar.classList.add('animate'));
+        }, i * 70);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
